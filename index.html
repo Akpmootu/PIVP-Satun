@@ -103,114 +103,135 @@
         }
     </style>
 </head>
-<body class="flex flex-col justify-between min-h-screen pt-[160px] md:pt-[110px] pb-24">
+<body class="bg-[#f3f4f6] flex flex-col font-sans min-h-screen pb-24">
 
-    <!-- Header Section (Official Thai Gov style - Fixed) -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-[#115e59] text-white py-3 px-4 md:px-6 shadow-md shrink-0 print:hidden">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-            <div class="flex items-center gap-3.5">
-                <img src="logo.jpg" alt="โลโก้สำนักงานสาธารณสุขจังหวัดสตูล" class="h-14 md:h-16 w-auto object-contain rounded-full border-2 border-white/20">
-                <div class="text-left border-l border-white/25 pl-3.5">
-                    <p class="font-bold text-base md:text-lg leading-tight">สำนักงานสาธารณสุขจังหวัดสตูล</p>
-                    <p class="text-teal-100 text-xs md:text-sm">กลุ่มงานบริหารทรัพยากรบุคคล</p>
+    <!-- Hero Section -->
+    <main class="flex-none bg-gradient-to-br from-[#115e59] to-[#0f766e] py-12 md:py-16 px-4 sm:px-6 lg:px-8 flex items-center print:hidden">
+        <div class="max-w-[1200px] w-full mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
+            
+            <!-- Left Column: Hero Text -->
+            <div class="w-full md:w-1/2 text-white space-y-6">
+                <div class="flex items-center gap-4">
+                    <!-- Logo image from the project -->
+                    <img src="logo.jpg" alt="โลโก้ สสจ.สตูล" class="w-16 h-16 bg-white rounded-full object-contain p-1 shadow-md shrink-0">
+                    <div>
+                        <h2 class="text-lg md:text-xl font-medium text-teal-50">สำนักงานสาธารณสุขจังหวัดสตูล</h2>
+                        <p class="text-sm md:text-base text-teal-200">กลุ่มงานบริหารทรัพยากรบุคคล</p>
+                    </div>
                 </div>
-            </div>
-            <div class="text-left md:text-right">
-                <h1 class="text-lg md:text-xl font-bold tracking-wide">ระบบตรวจสอบข้อมูลส่วนบุคคลผู้ปฏิบัติงาน</h1>
-                <p class="text-teal-100 text-[10px] md:text-xs tracking-wider font-mono font-medium opacity-90 uppercase">
-                    PERSONAL INFORMATION VERIFICATION PORTAL
-                </p>
-            </div>
-        </div>
-    </header>
-
-    <!-- Intro & Dashboard Stats Area -->
-    <section class="max-w-6xl mx-auto w-full mt-6 px-4 shrink-0">
-        <div class="bg-white rounded-lg border border-gray-200 p-5 shadow-sm flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-            <div>
-                <p class="text-gray-800 font-medium text-sm md:text-base">
+                
+                <div class="space-y-2">
+                    <h1 class="text-3xl md:text-[40px] font-bold leading-tight">
+                        ระบบตรวจสอบข้อมูล<br class="hidden md:block" />ส่วนบุคคลผู้ปฏิบัติงาน
+                    </h1>
+                    <p class="text-base md:text-lg text-teal-100 tracking-wide font-medium uppercase opacity-90">
+                        Personal Information Verification Portal
+                    </p>
+                </div>
+                
+                <p class="text-teal-50 max-w-lg text-sm md:text-base leading-relaxed opacity-90">
                     ระบบสำหรับตรวจสอบและยืนยันข้อมูลบุคลากรภาครัฐของสำนักงานสาธารณสุขจังหวัดสตูล
                 </p>
-                <p class="text-xs text-gray-500 mt-1">
-                    กรุณายืนยันตัวตนด้วยเลขประจำตัวประชาชน 13 หลักและรหัสผ่านเพื่อเข้าอ่านเอกสารประวัติ
-                </p>
-            </div>
-            <div class="flex flex-wrap items-center gap-3 shrink-0">
-                <div id="syncStatusBadge" class="hidden px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-50 border border-emerald-200 text-emerald-800 inline-flex items-center">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span> เชื่อมต่อฐานข้อมูลแล้ว
-                </div>
-                <span id="lastUpdate" class="text-xs text-gray-400"></span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Container -->
-    <main class="max-w-6xl mx-auto w-full flex-1 p-4 flex flex-col gap-6 items-center justify-center my-6">
-
-        <!-- Verification Form Card -->
-        <section class="bg-white rounded-lg border border-gray-200 shadow-md p-6 md:p-8 w-full max-w-[500px]">
-            <h2 class="text-lg font-bold text-gray-800 mb-5 text-center flex items-center justify-center gap-2">
-                <i class="fa-solid fa-shield-halved text-[#115e59]"></i> ยืนยันตัวตนเพื่อเข้าถึงข้อมูล
-            </h2>
-            
-            <!-- Error Alert Banner -->
-            <div id="errorAlert" class="hidden bg-red-50 text-red-800 border border-red-200 p-3 rounded-lg text-sm mb-5 flex items-start gap-2.5">
-                <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5 shrink-0"></i>
-                <div id="errorMsg" class="font-medium">ข้อความแจ้งเตือนข้อผิดพลาด</div>
-            </div>
-
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wider">เลขประจำตัวประชาชน (13 หลัก)</label>
-                    <div class="relative">
-                        <span class="absolute left-3.5 top-3 text-gray-400"><i class="fa-solid fa-id-card"></i></span>
-                        <input type="text" id="idCard" placeholder="1-2345-67890-12-3" class="w-full p-2.5 pl-10 rounded border border-gray-300 focus:ring-1 focus:ring-teal-500 outline-none text-gray-800 text-base font-semibold tracking-wider">
-                    </div>
-                    <span id="idCardWarning" class="hidden text-xs text-red-600 mt-1.5 block">
-                        <i class="fa-solid fa-circle-xmark mr-1"></i> กรุณากรอกเลขประจำตัวประชาชนให้ครบ 13 หลัก
-                    </span>
-                </div>
                 
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wider flex items-center justify-between">
-                        <span>รหัสผ่านสำหรับเปิดอ่านไฟล์</span>
-                        <!-- Custom CSS Tooltip -->
-                        <span class="relative group cursor-help text-[#115e59] hover:text-teal-700">
-                            <i class="fa-solid fa-circle-question text-sm"></i>
-                            <span class="absolute bottom-full right-0 mb-2 w-64 p-3 bg-gray-900 text-white text-[11px] rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 normal-case font-normal leading-relaxed">
-                                โครงสร้างรหัสผ่านคือ: วันเกิด (8 หลัก YYYYMMDD) + วันบรรจุ (8 หลัก YYYYMMDD) + เงินเดือนปัจจุบัน เช่น เกิด 1987-10-05 บรรจุ 2012-12-15 เงินเดือน 27850 จะเป็น 198710052012121527850
+                <div class="inline-flex items-center gap-2 bg-teal-900/40 backdrop-blur-sm px-4 py-2.5 rounded-full text-xs md:text-sm text-teal-50 border border-teal-700/50 shadow-inner">
+                    <div id="syncStatusBadge" class="hidden flex items-center">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+                    </div>
+                    <span id="lastUpdate">Sync ล่าสุด: -</span>
+                </div>
+            </div>
+
+            <!-- Right Column: Form Card -->
+            <div class="w-full md:w-1/2 max-w-[480px] mx-auto md:ml-auto md:mr-0">
+                <div class="bg-white rounded-[12px] shadow-2xl p-6 md:p-8">
+                    <div class="mb-6 text-center md:text-left">
+                        <h3 class="text-xl md:text-2xl font-bold text-[#111827] mb-2 flex items-center justify-center md:justify-start gap-2">
+                            <i class="fa-solid fa-shield-halved text-[#115e59]"></i> ยืนยันตัวตนเพื่อเข้าถึงข้อมูล
+                        </h3>
+                        <p class="text-[#6b7280] text-sm leading-relaxed">
+                            กรุณายืนยันตัวตนด้วยเลขประจำตัวประชาชน 13 หลักและรหัสผ่านเพื่อเข้าอ่านเอกสารประวัติ
+                        </p>
+                    </div>
+
+                    <!-- Error Alert Banner -->
+                    <div id="errorAlert" class="hidden bg-red-50 text-red-800 border border-red-200 p-3 rounded-lg text-sm mb-5 flex items-start gap-2.5 animate-fade-in">
+                        <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5 shrink-0"></i>
+                        <div id="errorMsg" class="font-medium">ข้อความแจ้งเตือนข้อผิดพลาด</div>
+                    </div>
+
+                    <form class="space-y-6" onsubmit="event.preventDefault(); document.getElementById('searchBtn').click();">
+                        <!-- Citizen ID Input -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-[#111827]">เลขประจำตัวประชาชน (13 หลัก)</label>
+                            <div class="relative">
+                                <span class="absolute left-3.5 top-3.5 text-gray-400"><i class="fa-solid fa-id-card"></i></span>
+                                <input 
+                                    type="text" 
+                                    id="idCard"
+                                    placeholder="1-2345-67890-12-3"
+                                    class="w-full px-4 py-3 pl-10 border border-[#e5e7eb] rounded-lg focus:ring-2 focus:ring-[#115e59] focus:border-[#115e59] outline-none transition-all text-[#111827] placeholder-[#6b7280] bg-gray-50 focus:bg-white font-semibold tracking-wider"
+                                />
+                            </div>
+                            <span id="idCardWarning" class="hidden text-xs text-red-600 mt-1.5 block">
+                                <i class="fa-solid fa-circle-xmark mr-1"></i> กรุณากรอกเลขประจำตัวประชาชนให้ครบ 13 หลัก
                             </span>
-                        </span>
-                    </label>
-                    <div class="relative">
-                        <span class="absolute left-3.5 top-3 text-gray-400"><i class="fa-solid fa-key"></i></span>
-                        <input type="password" id="userPass" placeholder="ป้อนรหัสผ่าน (Q+R+S)" class="w-full p-2.5 pl-10 pr-10 rounded border border-gray-300 focus:ring-1 focus:ring-teal-500 outline-none text-gray-800 text-base font-semibold">
-                        <button type="button" id="togglePassBtn" class="absolute right-3.5 top-3 text-gray-400 hover:text-gray-600 transition">
-                            <i class="fa-solid fa-eye"></i>
+                        </div>
+
+                        <!-- Password Input -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-[#111827]">รหัสผ่านสำหรับเปิดอ่านไฟล์</label>
+                            <div class="relative">
+                                <span class="absolute left-3.5 top-3.5 text-gray-400"><i class="fa-solid fa-key"></i></span>
+                                <input 
+                                    type="password" 
+                                    id="userPass"
+                                    placeholder="ป้อนรหัสผ่าน (Q+R+S)"
+                                    class="w-full px-4 py-3 pl-10 pr-12 border border-[#e5e7eb] rounded-lg focus:ring-2 focus:ring-[#115e59] focus:border-[#115e59] outline-none transition-all text-[#111827] placeholder-[#6b7280] bg-gray-50 focus:bg-white font-semibold"
+                                />
+                                <button 
+                                    type="button" 
+                                    id="togglePassBtn"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#6b7280] hover:text-[#111827] transition-colors"
+                                    title="แสดง/ซ่อนรหัสผ่าน"
+                                >
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Helper / Alert Box -->
+                        <div class="bg-[#fef3c7] border border-[#fde68a] rounded-lg p-4 flex gap-3 items-start">
+                            <i class="fa-solid fa-lightbulb text-[#92400e] shrink-0 mt-0.5 text-lg"></i>
+                            <div class="text-sm text-[#92400e] leading-relaxed">
+                                <span class="font-bold block mb-0.5">วิธีป้อนรหัสผ่าน (ข้อมูลคอลัมน์ Q+R+S):</span>
+                                ตัวเลขวันเกิด (8 หลัก) + ตัวเลขวันบรรจุ (8 หลัก) + เงินเดือนปัจจุบัน <span class="opacity-80">(ไม่ต้องใส่ลูกน้ำ)</span>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button 
+                            type="button" 
+                            id="searchBtn"
+                            class="w-full bg-[#16a34a] hover:bg-green-700 text-white font-bold py-3.5 px-4 rounded-lg transition-all shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-green-700/30 active:scale-[0.98] flex items-center justify-center gap-2"
+                        >
+                            <span id="btnSpinner" class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                            <span id="btnText"><i class="fa-solid fa-circle-check mr-1"></i> ตรวจสอบ</span>
                         </button>
-                    </div>
-                    
-                    <!-- Example Guideline Container -->
-                    <div class="text-[11px] text-gray-500 mt-1.5 leading-relaxed bg-gray-50 border border-gray-200 p-2.5 rounded text-left">
-                        <span class="font-bold text-[#115e59]"><i class="fa-solid fa-lightbulb mr-1"></i> วิธีป้อนรหัสผ่าน (ข้อมูลคอลัมน์ Q+R+S):</span><br>
-                        ตัวเลขวันเกิด (8 หลัก) + ตัวเลขวันบรรจุ (8 หลัก) + เงินเดือนปัจจุบัน<br>
-                        <span class="text-teal-700 font-bold block mt-1">ตัวอย่างจำลอง: เกิด 1987-10-05, บรรจุ 2012-12-15, เงินเดือน 27850 &rarr; รหัสผ่านคือ 198710052012121527850</span>
-                    </div>
+                        
+                        <p class="text-xs text-[#6b7280] text-center px-2">
+                            <i class="fa-solid fa-circle-info mr-1"></i> ข้อมูลการเข้าถึงนี้ใช้เพื่อการตรวจสอบข้อมูลบุคลากรในสังกัดเท่านั้น
+                        </p>
+                    </form>
                 </div>
-
-                <button id="searchBtn" class="w-full bg-[#16a34a] hover:bg-green-700 text-white py-3 rounded-lg font-bold transition shadow-sm flex items-center justify-center gap-2 text-base">
-                    <span id="btnSpinner" class="hidden w-4.5 h-4.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                    <span id="btnText"><i class="fa-solid fa-circle-check mr-0.5"></i> ตรวจสอบ</span>
-                </button>
-                
-                <p class="text-center text-[11px] text-gray-400 mt-4 leading-relaxed">
-                    <i class="fa-solid fa-circle-info mr-1"></i> ข้อมูลการเข้าถึงนี้ใช้เพื่อการตรวจสอบข้อมูลบุคลากรในสังกัดเท่านั้น
-                </p>
             </div>
-        </section>
+            
+        </div>
+    </main>
 
+    <!-- Result Display Container (Outside gradient, on gray background) -->
+    <div class="flex-grow max-w-[1200px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Result Display Section (Dossier View) -->
-        <section id="resultArea" class="hidden bg-white rounded-lg border border-gray-200 shadow-md p-6 md:p-8 w-full animate-fade-in mt-2">
+        <section id="resultArea" class="hidden bg-white rounded-xl border border-gray-200 shadow-lg p-6 md:p-8 w-full animate-fade-in mx-auto">
             <!-- Card Header Profile area -->
             <div id="resultHeader" class="border-b border-gray-200 pb-5 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div class="flex items-center gap-4">
@@ -269,17 +290,31 @@
                 </div>
             </div>
         </section>
-    </main>
+    </div>
 
-    <!-- Footer Section -->
-    <footer class="bg-gray-100 border-t border-gray-200 text-gray-500 py-6 text-center text-xs shrink-0 mb-6">
-        <div class="max-w-6xl mx-auto px-4">
-            © 2026 SATUN PROVINCIAL PUBLIC HEALTH OFFICE. ALL RIGHTS RESERVED.
+    <!-- Desktop Footer Section (Hidden on mobile to rely on bottom nav) -->
+    <footer class="bg-white border-t border-[#e5e7eb] py-8 mt-auto print:hidden">
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-xs md:text-sm text-[#6b7280] text-center md:text-left font-medium uppercase tracking-wider">
+                © 2026 Satun Provincial Public Health Office. All rights reserved.
+            </p>
+            <!-- Hide desktop footer links on mobile since bottom nav handles them -->
+            <div class="hidden md:flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-[#6b7280] font-medium">
+                <a href="https://satun.moph.go.th/wordpress/" class="hover:text-[#115e59] transition-colors">เว็บ สสจ.สตูล</a>
+                <span class="text-gray-300">|</span>
+                <a href="https://nonhr.moph.go.th//" class="hover:text-[#115e59] transition-colors">non-HR</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" onclick="resetSearchPortal()" class="hover:text-[#115e59] transition-colors">ตรวจสอบข้อมูล</a>
+                <span class="text-gray-300">|</span>
+                <a href="https://payslipsatun.moph.go.th/" class="hover:text-[#115e59] transition-colors">ePayslip</a>
+                <span class="text-gray-300">|</span>
+                <a href="https://sites.google.com/view/hr-sasuk-satun/index" class="hover:text-[#115e59] transition-colors">HR สสจ.สตูล</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Fixed Bottom Navigation Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 z-50 bg-[#115e59] border-t border-teal-700 text-white shadow-[0_-4px_10px_rgba(0,0,0,0.15)] select-none print:hidden">
+    <!-- Fixed Bottom Navigation Bar (Visible mainly for mobile) -->
+    <nav class="fixed bottom-0 left-0 right-0 z-50 bg-[#115e59] border-t border-teal-700 text-white shadow-[0_-4px_10px_rgba(0,0,0,0.15)] select-none print:hidden md:hidden">
         <div class="max-w-4xl mx-auto flex justify-around items-center h-16 px-2">
             <a href="https://satun.moph.go.th/wordpress/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center flex-1 text-center text-teal-100 hover:text-white transition duration-200">
                 <i class="fa-solid fa-globe text-lg"></i>
