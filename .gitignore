@@ -3,3 +3,6 @@
 .system_generated/
 .gemini/
 sheet_sample.json
+
+package.json
+server.js
