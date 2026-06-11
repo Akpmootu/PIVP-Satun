@@ -17,6 +17,13 @@ const MIME_TYPES = {
 };
 
 http.createServer((req, res) => {
+    // Intercept favicon.ico requests and return 204 No Content to prevent 404 errors
+    if (req.url === '/favicon.ico') {
+        res.writeHead(204, { 'Content-Type': 'image/x-icon' });
+        res.end();
+        return;
+    }
+
     let filePath = path.join(__dirname, req.url === '/' ? 'index.html' : req.url.split('?')[0]);
     const ext = path.extname(filePath).toLowerCase();
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
