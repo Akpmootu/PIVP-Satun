@@ -1,0 +1,11 @@
+{
+  "name": "hr-check-portal",
+  "version": "1.0.0",
+  "description": "Personal Information Verification Portal for Satun PHO",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "author": "Antigravity",
+  "license": "ISC"
+}
